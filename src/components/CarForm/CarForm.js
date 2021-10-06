@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,6 +29,7 @@ export default function CarForm({ car }) {
     submitHandler = (vals, e) => {
       console.log("update vals", vals);
       updateCar(car._id, vals);
+      reset(defaultValues);
       history.push("/"); // don't need to reset form because unmounting...
     };
     // Do something
@@ -40,11 +41,15 @@ export default function CarForm({ car }) {
     };
   }
 
-  const { register, handleSubmit, reset, formState } = useForm({
+  const { register, handleSubmit, reset, formState, setFocus } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: car || defaultValues,
   });
+
+  useEffect(() => {
+    setFocus("name");
+  }, [setFocus]);
 
   const { isDirty, isValid, isSubmitting, errors } = formState;
 
@@ -103,14 +108,14 @@ export default function CarForm({ car }) {
         )}
       </div>
       <div className="form-row controls">
-        {/* <p>{`${!isValid && isDirty}`}</p>
+        <p>{`${!isValid && isDirty}`}</p>
         <p>Valid: {`${isValid}`}</p>
         <p>Dirty: {`${isDirty}`}</p>
-        <p>Submitting: {`${isSubmitting}`}</p> */}
+        <p>Submitting: {`${isSubmitting}`}</p>
         <button type="reset" onClick={() => reset()}>
           Reset
         </button>
-        <button type="submit" disabled={isSubmitting || (!isValid || !isDirty)}>
+        <button type="submit" disabled={isSubmitting || !isValid || (!isDirty && car)}>
           Submit
         </button>
       </div>

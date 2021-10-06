@@ -28,7 +28,7 @@ function CarsList() {
         {cars?.length ? (
           <ul className="cars-list">
             {cars.map(({ _id, name, bhp, avatar_url }) => (
-              <li key={_id} className="cars-list-item">
+              <li key={_id} className="cars-list-item" data-id={_id}>
                 <img src={avatar_url} alt={name} className="avatar" />
                 <p>
                   {name} ({bhp} bhp)
