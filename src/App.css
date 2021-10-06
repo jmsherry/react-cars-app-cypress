@@ -1,0 +1,16 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 80%;
+    margin: auto;
+  }
+  }

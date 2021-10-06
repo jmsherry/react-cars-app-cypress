@@ -1,0 +1,19 @@
+.page-header {
+  padding: 15px;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  background-image: url(https://cdn1.buyacar.co.uk/sites/buyacar/files/jaguar-f-type20-1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  margin-inline-end: 15px;
+}
